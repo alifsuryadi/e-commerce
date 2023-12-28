@@ -19,7 +19,7 @@
             <div class="row">
             <div class="col-12">
                 <a
-                href="/dashboard-products-create.html"
+                href="/dashboard/products/create"
                 class="btn btn-success"
                 >
                 Add New Product
@@ -29,7 +29,7 @@
             <div class="row mt-4">
             <div class="col-12 col-sm-6 col-md-4 col-lg-3">
                 <a
-                href="/dashboard-products-details.html"
+                href="/dashboard/products/1"
                 class="card card-dashboard-product d-block"
                 >
                 <div class="card-body">
@@ -45,7 +45,7 @@
             </div>
             <div class="col-12 col-sm-6 col-md-4 col-lg-3">
                 <a
-                href="/dashboard-products-details.html"
+                href="/dashboard/products/1"
                 class="card card-dashboard-product d-block"
                 >
                 <div class="card-body">
@@ -61,7 +61,7 @@
             </div>
             <div class="col-12 col-sm-6 col-md-4 col-lg-3">
                 <a
-                href="/dashboard-products-details.html"
+                href="/dashboard/products/1"
                 class="card card-dashboard-product d-block"
                 >
                 <div class="card-body">
@@ -77,7 +77,7 @@
             </div>
             <div class="col-12 col-sm-6 col-md-4 col-lg-3">
                 <a
-                href="/dashboard-products-details.html"
+                href="/dashboard/products/1"
                 class="card card-dashboard-product d-block"
                 >
                 <div class="card-body">
@@ -93,7 +93,7 @@
             </div>
             <div class="col-12 col-sm-6 col-md-4 col-lg-3">
                 <a
-                href="/dashboard-products-details.html"
+                href="/dashboard/products/1"
                 class="card card-dashboard-product d-block"
                 >
                 <div class="card-body">

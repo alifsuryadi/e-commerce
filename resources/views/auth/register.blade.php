@@ -97,7 +97,7 @@
                     </select>
                 </div>
                 <a
-                    href="{{ route('dashboard') }}"
+                    href="{{ route('register-success') }}"
                     class="btn btn-success btn-block px-4 mt-4"
                     >Sign Up Now</a
                 >

@@ -59,7 +59,7 @@
                 aria-labelledby="pills-home-tab"
             >
                 <a
-                href="/dashboard-transactions-details.html"
+                href="/dashboard/transactions/1"
                 class="card card-list d-block"
                 >
                 <div class="card-body">
@@ -83,7 +83,7 @@
                 </div>
                 </a>
                 <a
-                href="/dashboard-transactions-details.html"
+                href="/dashboard/transactions/1"
                 class="card card-list d-block"
                 >
               <div class="card-body">
@@ -107,7 +107,7 @@
                 </div>
                 </a>
                 <a
-                href="/dashboard-transactions-details.html"
+                href="/dashboard/transactions/1"
                 class="card card-list d-block"
                 >
                 <div class="card-body">
@@ -138,7 +138,7 @@
                 aria-labelledby="pills-profile-tab"
             >
                 <a
-                href="/dashboard-transactions-details.html"
+                href="/dashboard/transactions/1"
                 class="card card-list d-block"
                 >
                 <div class="card-body">
