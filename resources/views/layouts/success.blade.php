@@ -11,7 +11,7 @@
 
     <title>@yield('title')</title>
 
-    {{-- Styles --}}
+    {{-- Style --}}
     @stack('prepend-style')
     @include('includes.style')
     @stack('addon-style')
@@ -19,19 +19,16 @@
   </head>
 
   <body>
-    <!-- Navbar -->
-    @include('includes.navbar')
-
 
     <!-- Page Content -->
     @yield('content')
 
-
+    
     <!-- Footer -->
     @include('includes.footer')
 
 
-    {{-- Scripts --}}
+    {{-- Script --}}
     @stack('prepend-script')
     @include('includes.script')
     @stack('addon-script')
