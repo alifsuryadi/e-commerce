@@ -9,35 +9,35 @@
     <div class="list-group list-group-flush">
       <a
         href="{{ route('dashboard') }}"
-        class="list-group-item list-group-item-action"
+        class="list-group-item list-group-item-action {{ (request()->is('dashboard')) ? 'active' : '' }}"
         >Dashboard</a
       >
     </div>
     <div class="list-group list-group-flush">
       <a
         href="{{ route('dashboard-product') }}"
-        class="list-group-item list-group-item-action"
+        class="list-group-item list-group-item-action {{ (request()->is('dashboard/products*')) ? 'active' : '' }}"
         >My Products</a
       >
     </div>
     <div class="list-group list-group-flush">
       <a
         href="{{ route('dashboard-transaction') }}"
-        class="list-group-item list-group-item-action"
+        class="list-group-item list-group-item-action {{ (request()->is('dashboard/transactions*')) ? 'active' : '' }}"
         >Transactions</a
       >
     </div>
     <div class="list-group list-group-flush">
       <a
         href="{{ route('dashboard-settings-store') }}"
-        class="list-group-item list-group-item-action"
+        class="list-group-item list-group-item-action {{ (request()->is('dashboard/setting*')) ? 'active' : '' }}"
         >Store Settings</a
       >
     </div>
     <div class="list-group list-group-flush">
       <a
         href="{{ route('dashboard-settings-account') }}"
-        class="list-group-item list-group-item-action"
+        class="list-group-item list-group-item-action {{ (request()->is('dashboard/account*')) ? 'active' : '' }}"
         >My Account</a
       >
     </div>

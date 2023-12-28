@@ -53,10 +53,11 @@ Route::get('/dashboard/account', [DashboardSettingController::class, 'account'])
 
 // ->middleware(['auth', 'admin']) 
 Route::prefix('admin')
-    ->namespace('Admin')  //namespace App\Http\Controllers\Admin;
+    ->namespace('App\Http\Controllers\Admin')  //namespace App\Http\Controllers\Admin;
     ->group(function(){
         Route::get('/', [AdminDashboardController::class, 'index'])
             ->name('admin-dashboard');
+        Route::resource('category', 'CategoryController');
     });
     
 
