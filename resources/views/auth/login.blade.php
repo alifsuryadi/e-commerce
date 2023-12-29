@@ -34,7 +34,7 @@
                 <div class="form-group">
                     <label for="password">Password</label>
                     <input
-                    type="text"
+                    type="password"
                     id="password"
                     name="password"
                     class="form-control w-75"

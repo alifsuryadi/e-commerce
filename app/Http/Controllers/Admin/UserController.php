@@ -2,19 +2,19 @@
 
 namespace App\Http\Controllers\Admin;
 
-use App\Models\Category;
-use App\Http\Requests\Admin\CategoryRequest;
+use App\Models\User;
+use App\Http\Requests\Admin\UserRequest;
 use Illuminate\Support\Str;
 
 use App\Http\Controllers\Controller;
-use App\Models\Category as ModelsCategory;
+use App\Models\User as ModelsUser;
 use Illuminate\Http\Request;
 
 use Illuminate\Support\Facades\Storage;
 use Yajra\DataTables\Facades\DataTables;
 
 
-class CategoryController extends Controller
+class UserController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -23,7 +23,7 @@ class CategoryController extends Controller
     {
         if(request()->ajax())
         {
-            $query = Category::query();
+            $query = User::query();
             
             return DataTables::of($query)
                 ->addColumn('action', function($item){
@@ -37,10 +37,10 @@ class CategoryController extends Controller
                                     Aksi
                                 </button>
                                 <div class="dropdown-menu">
-                                    <a class="dropdown-item" href="' . route('category.edit', $item->id) . '">
+                                    <a class="dropdown-item" href="' . route('user.edit', $item->id) . '">
                                         Sunting    
                                     </a>
-                                    <form action="'. route('category.destroy', $item->id) .'" method="POST">
+                                    <form action="'. route('user.destroy', $item->id) .'" method="POST">
                                         '. method_field('delete'). csrf_field() .'
                                         <button type="submit" class="dropdown-item text-danger">
                                             Hapus
@@ -52,15 +52,12 @@ class CategoryController extends Controller
                     
                     ';
                 })
-                ->editColumn('photo', function($item){
-                    return $item->photo ? '<img src="'. Storage::url($item->photo). '" style="max-height:48px;"/>': '';
-                })
-                ->rawColumns(['action', 'photo'])
+                ->rawColumns(['action'])
                 ->make();
             
         }
         
-        return view('pages.admin.category.index');
+        return view('pages.admin.user.index');
     }
 
     /**
@@ -68,22 +65,22 @@ class CategoryController extends Controller
      */
     public function create()
     {
-        return view('pages.admin.category.create');
+        return view('pages.admin.user.create');
     }
 
     /**
      * Store a newly created resource in storage.
      */
-    public function store(CategoryRequest $request)
+    public function store(UserRequest $request)
     {
+        // yang akan diubah ketika tampil di database
         $data = $request->all();
 
-        $data['slug'] = Str::slug($request->name);
-        $data['photo'] = $request->file('photo')->store('assets/category', 'public'); // artisan storage:link
-        
-        Category::create($data);
+        $data['password'] = bcrypt($request->password);
 
-        return redirect()->route('category.index');
+        User::create($data);
+
+        return redirect()->route('user.index');
     }
 
     /**
@@ -99,9 +96,9 @@ class CategoryController extends Controller
      */
     public function edit(string $id)
     {
-        $item = Category::findOrFail($id);
+        $item = User::findOrFail($id);
 
-        return view('pages.admin.category.edit', [
+        return view('pages.admin.user.edit', [
             'item' => $item
         ]);
     }
@@ -109,18 +106,26 @@ class CategoryController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(CategoryRequest $request, string $id)
+    public function update(UserRequest $request, string $id)
     {
         $data = $request->all();
 
-        $data['slug'] = Str::slug($request->name);
-        $data['photo'] = $request->file('photo')->store('assets/category', 'public'); // artisan storage:link
-        
-        $item = Category::findOrFail($id);
+        $item = User::findOrFail($id);
 
+        if($request->password)
+        {
+            // jika ada, ganti password
+            $data['password'] = bcrypt($request->password);
+        }
+        else
+        {   
+            unset($data['password']);
+        }
+
+        
         $item->update($data);
 
-        return redirect()->route('category.index');
+        return redirect()->route('user.index');
     }
 
     /**
@@ -128,10 +133,10 @@ class CategoryController extends Controller
      */
     public function destroy(string $id)
     {
-        $item = Category::findOrFail($id);
+        $item = User::findOrFail($id);
 
         $item->delete();
 
-        return redirect()->route('category.index');
+        return redirect()->route('user.index');
     }
 }
