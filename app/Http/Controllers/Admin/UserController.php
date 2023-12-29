@@ -7,7 +7,6 @@ use App\Http\Requests\Admin\UserRequest;
 use Illuminate\Support\Str;
 
 use App\Http\Controllers\Controller;
-use App\Models\User as ModelsUser;
 use Illuminate\Http\Request;
 
 use Illuminate\Support\Facades\Storage;

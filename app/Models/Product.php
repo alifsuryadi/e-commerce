@@ -36,6 +36,6 @@ class Product extends Model
     public function category()
     {
         // Hanya satu kategory setiap product
-        return $this->belongsTo(Category::class, 'products_id', 'id');
+        return $this->belongsTo(Category::class, 'categories_id', 'id');
     }
 }

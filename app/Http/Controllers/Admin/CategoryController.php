@@ -7,7 +7,6 @@ use App\Http\Requests\Admin\CategoryRequest;
 use Illuminate\Support\Str;
 
 use App\Http\Controllers\Controller;
-use App\Models\Category as ModelsCategory;
 use Illuminate\Http\Request;
 
 use Illuminate\Support\Facades\Storage;

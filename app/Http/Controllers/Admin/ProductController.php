@@ -7,7 +7,8 @@ use App\Http\Requests\Admin\ProductRequest;
 use Illuminate\Support\Str;
 
 use App\Http\Controllers\Controller;
-use App\Models\Product as ModelsProduct;
+use App\Models\Category;
+use App\Models\User;
 use Illuminate\Http\Request;
 
 use Illuminate\Support\Facades\Storage;
@@ -23,7 +24,7 @@ class ProductController extends Controller
     {
         if(request()->ajax())
         {
-            $query = Product::with(['user', ['category']]);
+            $query = Product::with(['user', 'category']);
             
             return DataTables::of($query)
                 ->addColumn('action', function($item){
@@ -65,7 +66,13 @@ class ProductController extends Controller
      */
     public function create()
     {
-        return view('pages.admin.product.create');
+        $users = User::all();
+        $categories = Category::all();
+
+        return view('pages.admin.product.create', [
+            'users' => $users,
+            'categories' => $categories,
+        ]);
     }
 
     /**
@@ -76,7 +83,7 @@ class ProductController extends Controller
         // yang akan diubah ketika tampil di database
         $data = $request->all();
 
-        $data['password'] = bcrypt($request->password);
+        $data['slug'] = Str::slug($request->name);
 
         Product::create($data);
 
@@ -98,8 +105,13 @@ class ProductController extends Controller
     {
         $item = Product::findOrFail($id);
 
+        $users = User::all();
+        $categories = Category::all();
+
         return view('pages.admin.product.edit', [
-            'item' => $item
+            'item' => $item,
+            'users' => $users,
+            'categories' => $categories,
         ]);
     }
 
@@ -112,16 +124,7 @@ class ProductController extends Controller
 
         $item = Product::findOrFail($id);
 
-        if($request->password)
-        {
-            // jika ada, ganti password
-            $data['password'] = bcrypt($request->password);
-        }
-        else
-        {   
-            unset($data['password']);
-        }
-
+        $data['slug'] = Str::slug($request->name);
         
         $item->update($data);
 
