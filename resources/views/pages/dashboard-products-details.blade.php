@@ -1,5 +1,10 @@
-@extends('layouts.dashboard') @section('title') Store Dashboard Product Details
-@endsection @section('content')
+@extends('layouts.dashboard') 
+
+@section('title') 
+    Store Dashboard Product Details
+@endsection 
+
+@section('content')
 <section class="section-content section-dashboard-home" data-aos="fade-up">
     <div class="container-fluid">
         <div class="dashboard-heading">
@@ -160,7 +165,10 @@
         </div>
     </div>
 </section>
-@endsection @push('addon-script')
+@endsection 
+
+
+@push('addon-script')
 <script src="https://cdn.ckeditor.com/4.20.0/basic/ckeditor.js"></script>
 <script>
     function thisFileUpload() {

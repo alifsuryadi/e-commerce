@@ -47,7 +47,8 @@
                                     <div class="col-md-12">
                                         <div class="form-group">
                                             <label>Pemilik Product</label>
-                                            <select name="users_id" class="form-control">
+                                            <select name="users_id" class="form-control" required>
+                                                <option value="" disabled>-- Select Users --</option>
                                                 <option value="{{ $item->users_id }}" selected >{{ $item->user->name }}</option>
                                                 @foreach ($users as $user)
                                                     <option value="{{ $user->id }}">{{ $user->name }}</option>
@@ -58,7 +59,8 @@
                                     <div class="col-md-12">
                                         <div class="form-group">
                                             <label>Kategori Product</label>
-                                            <select name="categories_id" class="form-control">
+                                            <select name="categories_id" class="form-control" required>
+                                                <option value="" disabled>-- Select Categories --</option>
                                                 <option value="{{ $item->categories_id }}" selected>{{ $item->category->name }}</option>
                                                 @foreach ($categories as $category)
                                                     <option value="{{ $category->id }}">{{ $category->name }}</option>
