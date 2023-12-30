@@ -18,7 +18,7 @@ class HomeController extends Controller
     {
 
         $categories = Category::take(6)->get();
-        $products = Product::with(['galleries'])->take(12)->get();  // dengan function relasi di model
+        $products = Product::with(['galleries'])->take(8)->get();  // dengan function relasi di model
         // $products = Product::with(['galleries'])->take(12)->latest()->get(); // gambar terbaru
 
         return view('pages.home', [
