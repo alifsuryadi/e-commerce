@@ -16,4 +16,9 @@ class CategoryController extends Controller
     {
         return view('pages.category');
     }
+
+    public function detail()
+    {
+        return view('pages.detail');
+    }
 }
