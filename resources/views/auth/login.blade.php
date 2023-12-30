@@ -9,51 +9,57 @@
         <section class="section-store-auth">
         <div class="container">
             <div class="row align-content-center row-login">
-            <div class="col-lg-6 text-center">
-                <img
-                src="/images/login-placeholder.jpg"
-                class="w-50 mb-4 mb-lg-none"
-                alt="Login Image"
-                />
-            </div>
-            <div class="col-lg-5">
-                <h2>
-                Belanja kebutuhan utama, <br />
-                menjadi lebih mudah
-                </h2>
-                <form action="" class="mt-3">
-                <div class="form-group">
-                    <label for="email">Email Address</label>
-                    <input
-                    type="email"
-                    id="email"
-                    name="email"
-                    class="form-control w-75"
+                <div class="col-lg-6 text-center">
+                    <img
+                    src="/images/login-placeholder.jpg"
+                    class="w-50 mb-4 mb-lg-none"
+                    alt="Login Image"
                     />
                 </div>
-                <div class="form-group">
-                    <label for="password">Password</label>
-                    <input
-                    type="password"
-                    id="password"
-                    name="password"
-                    class="form-control w-75"
-                    />
+                <div class="col-lg-5">
+                    <h2>
+                    Belanja kebutuhan utama, <br />
+                    menjadi lebih mudah
+                    </h2>
+                    <form method="POST" class="mt-3" action="{{ route('login') }}">
+                        @csrf
+                        
+                        <div class="form-group">
+                            <label for="email">Email Address</label>
+                            <input id="email" type="email" class="form-control w-75 @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" required autocomplete="email" autofocus>
+
+                                    @error('email')
+                                        <span class="invalid-feedback" role="alert">
+                                            <strong>{{ $message }}</strong>
+                                        </span>
+                                    @enderror
+                        </div>
+                        <div class="form-group">
+                            <label for="password">Password</label>
+                            <input id="password" type="password" class="form-control w-75 @error('password') is-invalid @enderror" name="password" required autocomplete="current-password">
+
+                                    @error('password')
+                                        <span class="invalid-feedback" role="alert">
+                                            <strong>{{ $message }}</strong>
+                                        </span>
+                                    @enderror
+                        </div>
+                        <button
+                            type="submit"
+                            class="btn btn-success btn-block px-4 w-75 mt-4"
+                        >
+                            Sign In to My Account
+                        </button>
+                        <a
+                            href="{{ route('register') }}"
+                            class="btn btn-signup btn-block px-4 w-75 mt-2"
+                        >
+                            Sign Up
+                        </a>
+                    </form>
                 </div>
-                <a
-                    href="{{ route('dashboard') }}"
-                    class="btn btn-success btn-block px-4 w-75 mt-4"
-                    >Sign In to My Account</a
-                >
-                <a
-                    href="{{ route('register') }}"
-                    class="btn btn-signup btn-block px-4 w-75 mt-2"
-                    >Sign Up</a
-                >
-                </form>
+                </div>
             </div>
-            </div>
-        </div>
         </section>
     </div>
 
