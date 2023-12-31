@@ -22,6 +22,7 @@
                                 <label for="name">Full Name</label>
                                 <input  id="name" 
                                         type="text" 
+                                        placeholder="your name"
                                         class="form-control @error('name') is-invalid @enderror" 
                                         name="name" value="{{ old('name') }}" 
                                         required autocomplete="name" 
@@ -37,7 +38,8 @@
                             <div class="form-group">
                                 <label for="email">Email Address</label>
                                 <input  id="email" 
-                                        type="email" 
+                                        type="email"
+                                        placeholder="example@gmail.com" 
                                         v-model="email"
                                         @change="checkForEmailAvailability()"
                                         class="form-control @error('email') is-invalid @enderror" 
@@ -209,8 +211,8 @@
 
         data() {
             return {
-                name: "Your name",
-                email: "youremail@gmail.com",
+                name: "",
+                email: "",
                 is_store_open: false,
                 store_name: "",
                 email_unavailable : false,
