@@ -21,4 +21,11 @@ class Transaction extends Model
 
     protected $hidden = [
     ];
+
+
+    public function user()
+    {
+        // Satu user satu transaction, tapi bisa melakukan banyak transaksi
+        return $this->belongsTo(User::class, 'users_id', 'id');
+    }
 }
