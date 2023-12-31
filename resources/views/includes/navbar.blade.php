@@ -65,15 +65,27 @@
                         Hi, {{ Auth::user()->name }}
 
                         <div class="dropdown-menu">
-                            <a href="{{ route('dashboard') }}" class="dropdown-item">Dashboard</a>
-                            <a href="{{ route('dashboard-settings-account') }}" class="dropdown-item">
-                                Setting
-                            </a>
+
+                            {{-- IF --}}
+                            @php
+                                $user_roles = Auth::user()->roles;
+                            @endphp
+
+                            @if ($user_roles == 'USER')
+                                <a href="{{ route('dashboard') }}" class="dropdown-item">Dashboard</a>    
+                            @else
+                                <a href="{{ url('/admin') }}" class="dropdown-item">Admin</a>
+                                <a href="{{ route('dashboard') }}" class="dropdown-item">Dashboard</a>
+                            @endif
+
+                            <a href="{{ route('dashboard-settings-account') }}" class="dropdown-item"
+                                >Setting</a
+                            >
                             <div class="dropdown-divider"></div>
                             <a href=href="{{ route('logout') }}" onclick="event.preventDefault();
-                            document.getElementById('logout-form').submit();" 
-                            class="dropdown-item">
-                            Logout
+                                document.getElementById('logout-form').submit();" 
+                                class="dropdown-item">
+                                Logout
                             </a>
                             <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
                                 @csrf
