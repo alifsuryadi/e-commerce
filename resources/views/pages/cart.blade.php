@@ -120,7 +120,8 @@
                                 class="form-control"
                                 id="address_one"
                                 name="address_one"
-                                value="Setra Duta Cemara"
+                                placeholder="Exp: Jln. Sudirman"
+                                value="{{ $user->address_one }}"
                             />
                         </div>
                     </div>
@@ -132,7 +133,8 @@
                                 class="form-control"
                                 id="address_two"
                                 name="address_two"
-                                value="Blok B2 No. 34"
+                                placeholder="Exp: Blok B2 No. 34"
+                                value="{{ $user->address_two }}"
                             />
                         </div>
                     </div>
@@ -182,7 +184,8 @@
                                 class="form-control"
                                 id="zip_code"
                                 name="zip_code"
-                                value="123999"
+                                placeholder="Exp: 123999"
+                                value="{{ $user->zip_code }}"
                             />
                         </div>
                     </div>
@@ -194,7 +197,8 @@
                                 class="form-control"
                                 id="country"
                                 name="country"
-                                value="Indonesia"
+                                placeholder="Exp: Indonesia"
+                                value="{{ $user->country }}"
                             />
                         </div>
                     </div>
@@ -206,7 +210,8 @@
                                 class="form-control"
                                 id="phone_number"
                                 name="phone_number"
-                                value="+628 2020 11111"
+                                placeholder="Exp: +628 2020 1111"
+                                value="{{ $user->phone_number }}"
                             />
                         </div>
                     </div>
