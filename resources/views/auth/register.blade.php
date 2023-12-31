@@ -211,7 +211,7 @@
             return {
                 name: "Your name",
                 email: "youremail@gmail.com",
-                is_store_open: true,
+                is_store_open: false,
                 store_name: "",
                 email_unavailable : false,
             }

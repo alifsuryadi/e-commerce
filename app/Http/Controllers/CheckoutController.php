@@ -54,6 +54,9 @@ class CheckoutController extends Controller
             ]);
         }
 
+        // Delete cart setelah checkout
+        Cart::where('users_id', Auth::user()->id)->delete();
+
         // Cek sudah benar / tidak
         // return dd($transaction);
 
