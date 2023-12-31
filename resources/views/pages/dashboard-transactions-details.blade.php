@@ -56,11 +56,23 @@ Store Dashboard Transaction Details
                                             <div class="product-title">
                                                 Payment Status
                                             </div>
-                                            <div
-                                                class="product-subtitle text-danger"
-                                            >
-                                            {{ $transaction->transaction->transaction_status }}
-                                            </div>
+
+                
+                                            @if ($transaction->transaction->transaction_status == 'SUCCESS')
+                                                <div class="product-subtitle text-success">
+                                                    {{ $transaction->transaction->transaction_status }}
+                                                </div>  
+                                            @elseif ($transaction->transaction->transaction_status == 'PENDING')
+                                                <div class="product-subtitle text-warning">
+                                                    {{ $transaction->transaction->transaction_status }}
+                                                </div>
+                                            @else
+                                                <div class="product-subtitle text-danger">
+                                                    {{ $transaction->transaction->transaction_status }}
+                                                </div>
+                                            @endif
+
+
                                         </div>
                                         <div class="col-12 col-md-6">
                                             <div class="product-title">
