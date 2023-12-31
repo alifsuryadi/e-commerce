@@ -24,6 +24,9 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
+// Get =  Ambil Data
+// Post = Nyimpan data
+
 Route::get('/', [HomeController::class, 'index'])->name('home');
 
 Route::get('/categories', [CategoryController::class, 'index'])->name('categories');
@@ -57,8 +60,17 @@ Route::group(['middleware' => ['auth']], function (){
         ->name('dashboard-product');
     Route::get('/dashboard/products/create', [DashboardProductController::class, 'create'])
         ->name('dashboard-product-create');
+    Route::post('/dashboard/products', [DashboardProductController::class, 'store'])
+        ->name('dashboard-product-store');
     Route::get('/dashboard/products/{id}', [DashboardProductController::class, 'details'])
         ->name('dashboard-product-details');
+    Route::post('/dashboard/products/{id}', [DashboardProductController::class, 'update'])
+        ->name('dashboard-product-update');
+
+    Route::post('/dashboard/products/gallery/upload', [DashboardProductController::class, 'uploadGallery'])
+        ->name('dashboard-product-gallery-upload');
+    Route::get('/dashboard/products/gallery/delete/{id}', [DashboardProductController::class, 'deleteGallery'])
+        ->name('dashboard-product-gallery-delete');
 
 
     Route::get('/dashboard/transactions', [DashboardTransactionController::class, 'index'])
@@ -73,6 +85,7 @@ Route::group(['middleware' => ['auth']], function (){
 
 });
     
+
 
 Route::prefix('admin')
     ->namespace('App\Http\Controllers\Admin')  //namespace App\Http\Controllers\Admin;

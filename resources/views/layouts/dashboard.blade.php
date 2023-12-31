@@ -67,14 +67,22 @@
                       Hi, {{ Auth::user()->name }}
 
                       <div class="dropdown-menu">
-                        <a href="{{ route('dashboard') }}" class="dropdown-item"
-                          >Dashboard</a
+                        <a href="{{ route('home') }}" class="dropdown-item"
+                          >Home</a
                         >
                         <a href="{{ route('dashboard-settings-account') }}" class="dropdown-item"
                           >Setting</a
                         >
                         <div class="dropdown-divider"></div>
-                        <a href="/" class="dropdown-item">Logout</a>
+                        <a href="{{ route('logout') }}" onclick="event.preventDefault();
+                            document.getElementById('logout-form').submit();" 
+                            class="dropdown-item"
+                          >
+                            Logout
+                        </a>
+                        <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
+                              @csrf
+                        </form>
                       </div>
                     </a>
                   </li>
@@ -99,7 +107,10 @@
                 <!-- Phone -->
                 <ul class="navbar-nav d-block d-lg-none">
                   <li class="nav-item">
-                    <a href="#" class="nav-link">Hi, {{ Auth::user()->name }}</a>
+                    <a href="{{ route('dashboard-settings-account') }}" class="nav-link">Hi, {{ Auth::user()->name }}</a>
+                  </li>
+                  <li class="nav-item">
+                    <a href="{{ route('home') }}" class="nav-link">Home</a>
                   </li>
                   <li class="nav-item">
                     <a href="{{ route('cart') }}" class="nav-link d-inline-block">Cart</a>

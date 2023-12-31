@@ -15,52 +15,60 @@
         <div class="dashboard-content">
             <div class="row">
                 <div class="col-12">
-                    <form action="">
+
+
+                    {{-- Error handling --}}
+                    @if ($errors->any())
+                        <div class="alert alert-danger">
+                            <ul>
+                                @foreach ($errors->all() as $error  )
+                                    <li>{{ $error }}</li>
+                                @endforeach
+                            </ul>
+                        </div>
+                    @endif
+
+                    <form action="{{ route('dashboard-product-update', $product->id) }}" method="POST" enctype="multipart/form-data">
+                        @csrf
+
+                        <input type="hidden" name="users_id" value="{{ Auth::user()->id }}">
                         <div class="card">
                             <div class="card-body">
                                 <div class="row">
                                     <div class="col-md-6">
                                         <div class="form-group">
-                                            <label for="">Product Name</label>
+                                            <label>Product Name</label>
                                             <input
                                                 type="text"
-                                                id=""
-                                                name=""
+                                                name="name"
                                                 class="form-control"
+                                                value="{{ $product->name }}"
                                             />
                                         </div>
                                     </div>
                                     <div class="col-md-6">
                                         <div class="form-group">
-                                            <label for="">Price</label>
+                                            <label>Price</label>
                                             <input
                                                 type="number"
-                                                id=""
-                                                name=""
+                                                name="price"
                                                 class="form-control"
+                                                value="{{ $product->price }}"
                                             />
                                         </div>
                                     </div>
                                     <div class="col-md-12">
                                         <div class="form-group">
-                                            <label for="category"
-                                                >Kategori</label
-                                            >
+                                            <label>Kategori</label>
                                             <select
-                                                name="category"
-                                                id="category"
+                                                name="categories_id"
                                                 class="form-control"
                                             >
-                                                <option
-                                                    value=""
-                                                    disabled
-                                                    selected
-                                                >
-                                                    Select Category
-                                                </option>
-                                                <option value="">
-                                                    Furniture
-                                                </option>
+                                                <option value="" disabled>-- Select Categories --</option>
+                                                <option value="{{ $product->categories_id }}" selected>Tidak diganti ({{ $product->category->name }})</option>
+                                                @foreach ($categories as $category)
+                                                    <option value="{{ $category->id }}">{{ $category->name }}</option>
+                                                @endforeach
                                             </select>
                                         </div>
                                     </div>
@@ -70,10 +78,8 @@
                                             <textarea
                                                 name="description"
                                                 id="editor"
-                                                cols="30"
-                                                rows="10"
                                                 class="form-control"
-                                            ></textarea>
+                                            >{!! $product->description !!}</textarea>
                                         </div>
                                     </div>
                                 </div>
@@ -83,7 +89,7 @@
                                             type="submit"
                                             class="btn btn-success px-5 btn-block"
                                         >
-                                            Create Product
+                                            Save Now
                                         </button>
                                     </div>
                                 </div>
@@ -97,14 +103,18 @@
                     <div class="card">
                         <div class="card-body">
                             <div class="row">
+
+
+                                @foreach ($product->galleries as $gallery)
+
                                 <div class="col-md-4 mb-4">
                                     <div class="gallery-container">
                                         <img
-                                            src="/images/dashboard/product-card-1.png"
-                                            alt=""
+                                            src="{{ Storage::url($gallery->photos ?? '') }}"
+                                            alt="{{ $gallery->product->name }}"
                                             class="w-100"
                                         />
-                                        <a href="#" class="delete-gallery">
+                                        <a href="{{ route('dashboard-product-gallery-delete', $gallery->id) }}" class="delete-gallery">
                                             <img
                                                 src="/images/dashboard/icon-delete.svg"
                                                 alt=""
@@ -112,50 +122,32 @@
                                         </a>
                                     </div>
                                 </div>
-                                <div class="col-md-4 mb-4">
-                                    <div class="gallery-container">
-                                        <img
-                                            src="/images/dashboard/product-card-2.png"
-                                            alt=""
-                                            class="w-100"
-                                        />
-                                        <a href="#" class="delete-gallery">
-                                            <img
-                                                src="/images/dashboard/icon-delete.svg"
-                                                alt=""
-                                            />
-                                        </a>
-                                    </div>
-                                </div>
-                                <div class="col-md-4 mb-4">
-                                    <div class="gallery-container">
-                                        <img
-                                            src="/images/dashboard/product-card-5.png"
-                                            alt=""
-                                            class="w-100"
-                                        />
-                                        <a href="#" class="delete-gallery">
-                                            <img
-                                                src="/images/dashboard/icon-delete.svg"
-                                                alt=""
-                                            />
-                                        </a>
-                                    </div>
-                                </div>
+
+                                @endforeach
+
                                 <div class="col-12">
-                                    <input
-                                        type="file"
-                                        name=""
-                                        id="file"
-                                        style="display: none"
-                                        multiple
-                                    />
-                                    <button
-                                        class="btn btn-secondary btn-block mt-2"
-                                        onclick="thisFileUpload()"
-                                    >
-                                        Add Photo
-                                    </button>
+
+                                    <form action="{{ route('dashboard-product-gallery-upload') }}" method="POST" enctype="multipart/form-data">
+                                        @csrf
+                                        <input type="hidden" name="products_id" value="{{ $product->id }}">
+
+                                        {{-- Onchange = auto submit / upload --}}
+                                        <input
+                                            type="file"
+                                            name="photos"
+                                            id="file"
+                                            style="display: none"
+                                            onchange="form.submit()"
+                                        />
+
+                                        <button
+                                            type="button"
+                                            class="btn btn-secondary btn-block mt-2"
+                                            onclick="thisFileUpload()"
+                                        >
+                                            Add Photo
+                                        </button>
+                                    </form>
                                 </div>
                             </div>
                         </div>
