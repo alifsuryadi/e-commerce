@@ -31,7 +31,7 @@
                         <div class="card-body">
                             <div class="dashboard-card-title">Revenue</div>
                             <div class="dashboard-card-subtitle">
-                                ${{ $revenue }}
+                                ${{ number_format($revenue) }}
                             </div>
                         </div>
                     </div>

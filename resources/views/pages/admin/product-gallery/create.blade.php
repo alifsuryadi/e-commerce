@@ -40,7 +40,8 @@
                                     <div class="col-md-12">
                                         <div class="form-group">
                                             <label>Nama Product</label>
-                                            <select name="products_id" class="form-control">
+                                            <select name="products_id" class="form-control" required>
+                                                <option value="" disabled selected>-- Select Products --</option>
                                                 @foreach ($products as $product)
                                                     <option value="{{ $product->id }}">{{ $product->name }}</option>
                                                 @endforeach

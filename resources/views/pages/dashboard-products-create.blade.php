@@ -15,7 +15,22 @@
         <div class="dashboard-content">
             <div class="row">
                 <div class="col-12">
-                    <form action="">
+
+                    {{-- Error handling --}}
+                    @if ($errors->any())
+                        <div class="alert alert-danger">
+                            <ul>
+                                @foreach ($errors->all() as $error  )
+                                    <li>{{ $error }}</li>
+                                @endforeach
+                            </ul>
+                        </div>
+                    @endif
+
+                    <form action="{{ route('dashboard-product-store') }}" method="post" enctype="multipart/form-data">
+                        @csrf
+
+                        <input type="hidden" name="users_id" value="{{ Auth::user()->id }}">
                         <div class="card">
                             <div class="card-body">
                                 <div class="row">
@@ -24,8 +39,7 @@
                                             <label for="">Product Name</label>
                                             <input
                                                 type="text"
-                                                id=""
-                                                name=""
+                                                name="name"
                                                 class="form-control"
                                             />
                                         </div>
@@ -35,60 +49,45 @@
                                             <label for="">Price</label>
                                             <input
                                                 type="number"
-                                                id=""
-                                                name=""
+                                                name="price"
                                                 class="form-control"
                                             />
                                         </div>
                                     </div>
                                     <div class="col-md-12">
                                         <div class="form-group">
-                                            <label for="category"
-                                                >Kategori</label
-                                            >
+                                            <label> Kategori </label>
                                             <select
-                                                name="category"
-                                                id="category"
+                                                name="categories_id"
                                                 class="form-control"
                                             >
-                                                <option
-                                                    value=""
-                                                    disabled
-                                                    selected
-                                                >
-                                                    Select Category
-                                                </option>
-                                                <option value="">
-                                                    Furniture
-                                                </option>
+                                                <option value="" disabled selected>-- Select Categories --</option>
+                                                @foreach ($categories as $category)
+                                                    <option value="{{ $category->id }}">{{ $category->name }}</option>
+                                                @endforeach
                                             </select>
                                         </div>
                                     </div>
                                     <div class="col-md-12">
                                         <div class="form-group">
-                                            <label for="">Description</label>
+                                            <label>Description</label>
                                             <textarea
                                                 name="description"
                                                 id="editor"
-                                                cols="30"
-                                                rows="10"
                                                 class="form-control"
                                             ></textarea>
                                         </div>
                                     </div>
                                     <div class="col-md-12">
                                         <div class="form-group">
-                                            <label for="">Thumbnails</label>
+                                            <label >Thumbnails</label>
                                             <input
                                                 type="file"
-                                                id=""
-                                                name=""
+                                                name="photo"
                                                 class="form-control"
-                                                multiple
                                             />
                                             <p class="text-muted">
-                                                Kamu dapat memilih lebih dari
-                                                satu
+                                                Kamu dapat memilih lebih dari satu
                                             </p>
                                         </div>
                                     </div>

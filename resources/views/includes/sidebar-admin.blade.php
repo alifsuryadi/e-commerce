@@ -37,8 +37,8 @@
     </div>
     <div class="list-group list-group-flush">
       <a
-        href="#"
-        class="list-group-item list-group-item-action"
+        href="{{ route('transaction.index') }}"
+        class="list-group-item list-group-item-action {{ (request()->is('admin/transaction*')) ? 'active' : '' }}"
         >Transactions</a
       >
     </div>
@@ -50,8 +50,14 @@
       >
     </div>
     <div class="list-group list-group-flush">
-      <a href="{{ route('home') }}" class="list-group-item list-group-item-action"
-        >Sign Out</a
+      <a href="{{ route('logout') }}" onclick="event.preventDefault();
+        document.getElementById('logout-form').submit();" 
+        class="list-group-item list-group-item-action"
       >
+        Sign Out
+      </a>
+      <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
+          @csrf
+      </form>
     </div>
 </div>

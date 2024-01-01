@@ -54,14 +54,14 @@
                                         <div class="form-group">
                                             <label>Password</label>
                                             <input type="password" name="password" class="form-control">
-                                            <small class="text-muted">Kosongkan jika tidak ingin mengganti password</small>
+                                            <small class="text-muted">**Kosongkan jika tidak ingin mengganti password</small>
                                         </div>
                                     </div>
                                     <div class="col-md-12">
                                         <div class="form-group">
                                             <label>Roles</label>
                                             <select name="roles" class="form-control" required>
-                                                <option value="{{ $item->roles }}" selected>Tidak diganti</option>
+                                                <option value="{{ $item->roles }}" selected class="font-italic">Tidak diganti</option>
                                                 <option value="ADMIN">Admin</option>
                                                 <option value="USER">User</option>
                                             </select>
